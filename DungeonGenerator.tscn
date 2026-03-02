@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dsrm0tyf4dpym"]
+
+[ext_resource type="Script" path="res://DungeonGenerator.gd" id="1_gen"]
+[ext_resource type="Shader" path="res://GridTexture.gdshader" id="1_shader"]
+[ext_resource type="PackedScene" uid="uid://b00abc123xyz" path="res://Player.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://chest12345" path="res://Chest.tscn" id="3_chest"]
+[ext_resource type="PackedScene" uid="uid://enemy123xy0" path="res://Enemy.tscn" id="4_enemy"]
+
+[sub_resource type="Shader" id="Shader_grid"]
+code = ExtResource("1_shader")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_floor"]
+render_priority = 0
+shader = SubResource("Shader_grid")
+shader_parameter/base_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/grid_color = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/grid_size = 0.5
+shader_parameter/line_thickness = 0.05
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+material = SubResource("ShaderMaterial_floor")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wall"]
+render_priority = 0
+shader = SubResource("Shader_grid")
+shader_parameter/base_color = Color(0.4, 0.4, 0.5, 1)
+shader_parameter/grid_color = Color(0.2, 0.2, 0.3, 1)
+shader_parameter/grid_size = 1.0
+shader_parameter/line_thickness = 0.05
+
+[sub_resource type="BoxMesh" id="BoxMesh_wall"]
+material = SubResource("ShaderMaterial_wall")
+size = Vector3(4, 8, 4)
+
+[node name="DungeonGenerator" type="Node3D"]
+script = ExtResource("1_gen")
+width = 40
+depth = 40
+num_steps = 400
+cell_size = 4.0
+player_scene = ExtResource("2_player")
+chest_scene = ExtResource("3_chest")
+enemy_scene = ExtResource("4_enemy")
+floor_mesh = SubResource("BoxMesh_floor")
+wall_mesh = SubResource("BoxMesh_wall")

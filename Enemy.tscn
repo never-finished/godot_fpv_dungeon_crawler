@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://enemy123xy0"]
+
+[ext_resource type="Script" uid="uid://b33sunm4eh1yp" path="res://Enemy.gd" id="1_enemy"]
+[ext_resource type="Script" uid="uid://dbkctclwl7smn" path="res://StatManager.gd" id="2_stats"]
+[ext_resource type="PackedScene" uid="uid://ktij44jvbr61" path="res://Models/moleMan.glb" id="3_2hac7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_abc"]
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1292592736]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_enemy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1717163012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_abc")
+
+[node name="StatManager" type="Node" parent="." unique_id=1266969770]
+script = ExtResource("2_stats")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2135034757]
+
+[node name="moleMan" parent="." unique_id=236447722 instance=ExtResource("3_2hac7")]
+transform = Transform3D(-0.064172916, 0, -5.7832734e-09, 0, 0.10517605, 0, 5.610174e-09, 0, -0.06615293, -0.45176506, 0.22451818, -0.045585155)

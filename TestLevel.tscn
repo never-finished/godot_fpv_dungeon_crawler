@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://testbed12345"]
+
+[ext_resource type="PackedScene" uid="uid://b00abc123xyz" path="res://Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://chest12345" path="res://Chest.tscn" id="2_chest"]
+[ext_resource type="PackedScene" uid="uid://generator12345" path="res://DungeonGenerator.tscn" id="3_generator"]
+[ext_resource type="PackedScene" uid="uid://stairs123" path="res://Stairs.tscn" id="4_stairs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_floor"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_floor"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_abc12"]
+sky_top_color = Color(0.385, 0.454, 0.55, 1)
+sky_horizon_color = Color(0.646, 0.656, 0.67, 1)
+ground_bottom_color = Color(0.2, 0.169, 0.133, 1)
+ground_horizon_color = Color(0.646, 0.656, 0.67, 1)
+
+[sub_resource type="Sky" id="Sky_def34"]
+sky_material = SubResource("ProceduralSkyMaterial_abc12")
+
+[sub_resource type="Environment" id="Environment_ghi56"]
+background_mode = 1
+background_color = Color(0.02, 0.02, 0.03, 1)
+tonemap_mode = 2
+tonemap_exposure = 1.2
+tonemap_white = 1.5
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 3.0
+ssil_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_bloom = 0.5
+glow_blend_mode = 0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.08
+volumetric_fog_albedo = Color(0.1, 0.1, 0.15, 1)
+
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ghi56")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 10, 0)
+light_color = Color(0.4, 0.5, 0.7, 1)
+light_energy = 0.05
+shadow_enabled = true
+
+[node name="DungeonGenerator" parent="." instance=ExtResource("3_generator")]
+stairs_scene = ExtResource("4_stairs")
+
+
