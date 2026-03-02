@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://floattext123"]
+
+[ext_resource type="Script" path="res://FloatingText.gd" id="1_float"]
+
+[node name="FloatingText" type="Label3D"]
+text = "0"
+font_size = 48
+outline_size = 8
+script = ExtResource("1_float")
